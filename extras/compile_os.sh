@@ -2,7 +2,7 @@
 
 rm -f bootSector.bin
 
-nasm -f bootSector.asm -o bootSector.bin
+nasm -f bin bootSector.asm -o bootSector.bin
 
 # To compile and execute
 # sh compile_os.sh
