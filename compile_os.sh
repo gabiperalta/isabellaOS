@@ -17,3 +17,4 @@ grub-mkrescue -o isabellaos.iso isodir
 # To compile and execute
 # sh compile_os.sh
 # qemu-system-i386 -cdrom isabellaos.iso
+# qemu-system-i386 -kernel isabellaos.bin # without grub
