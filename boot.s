@@ -30,11 +30,17 @@ System V ABI standard and de-facto extensions. The compiler will assume the
 stack is properly aligned and failure to align the stack will result in
 undefined behavior.
 */
+
+/*
+.section .data
+*/
+
 .section .bss
 .align 16
 stack_bottom:
 .skip 16384 # 16 KiB
 stack_top:
+page_directory:
  
 /*
 The linker script specifies _start as the entry point to the kernel and the
@@ -75,6 +81,13 @@ _start:
 	C++ features such as global constructors and exceptions will require
 	runtime support to work as well.
 	*/
+
+        mov $page_directory,%eax
+        mov %eax,%cr3
+
+        mov %cr0,%eax
+        or $0x80000001,%eax
+        mov %eax,%cr4
  
 	/*
 	Enter the high-level kernel. The ABI requires the stack is 16-byte
@@ -98,6 +111,16 @@ _start:
 	3) Jump to the hlt instruction if it ever wakes up due to a
 	   non-maskable interrupt occurring or due to system management mode.
 	*/
+
+
+        /*
+        mov $0x00,%ah
+        int $0x16
+
+        mov $0x0e,%ah
+        int $0x10
+        */
+
 	cli
 1:	hlt
 	jmp 1b

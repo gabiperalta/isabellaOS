@@ -132,6 +132,6 @@ void kernel_main(void){
  
 	/* Newline support is left as an exercise. */
 	//terminal_writestring("Hello, kernel Mundo!\nhola");
-	terminal_writestring("H\ne\nl\nl\no\n, k\ne\nr\nn\ne\nl\n M\nu\nn\nd\no\n!\nh\no\nl\na\nvesv\nevs\nves\nvse\nvsevs\nchau\n");
-	terminal_writestring("fervberbebrberberberberberbrbebreberberberberbebeberbrbebebebebrbrbrbrbrbrbrbrbra");
+	terminal_writestring("Hello, kernel Mundo!\n");
+	//terminal_writestring("fervberbebrberberberberberbrbebreberberberberbebeberbrbebebebebrbrbrbrbrbrbrbrbra");
 }
