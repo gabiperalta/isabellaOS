@@ -129,6 +129,7 @@ void terminal_scroll(void){
 void kernel_main(void){
 	/* Initialize terminal interface */
 	terminal_initialize();
+	//unsigned char numero = 5/0;
  
 	/* Newline support is left as an exercise. */
 	//terminal_writestring("Hello, kernel Mundo!\nhola");
