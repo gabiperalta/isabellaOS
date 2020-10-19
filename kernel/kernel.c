@@ -4,6 +4,8 @@
 #include <vga.h>
 #include <gdt.h>
 #include <idt.h>
+#include <isrs.h>
+#include <irq.h>
 
 #if defined(__linux__)
 #error "No estas usando un cross-compiler"
@@ -19,9 +21,13 @@ void kernel_main(void){
 	gdt_install();
 	idt_install();
 	isrs_install();
+	irq_install();
+	//keyboard_install();
+
+	__asm__ __volatile__ ("sti");
 
 	//unsigned char numero = 5/0;
-	//__asm__  ("div %0" :: "r"(0));
+	__asm__  ("div %0" :: "r"(0));
  
 	/* Newline support is left as an exercise. */
 	//terminal_writestring("Hello, kernel Mundo!\nhola");
