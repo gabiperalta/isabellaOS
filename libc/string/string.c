@@ -1,12 +1,7 @@
 #include <string.h>
 
-
-void* memset(void * dest, unsigned char val, int count){
-    void * aux = dest;
-    for(int i=0; i<count; i++){
-        *( unsigned char*)aux = val;
-        aux = aux + sizeof(dest);
-    }
-    
+void *memset(void *dest, char val, size_t count){
+    char *temp = (char *)dest;
+    for( ; count != 0; count--) *temp++ = val;
     return dest;
 }
