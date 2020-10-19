@@ -14,12 +14,14 @@
 #endif
 
 void kernel_main(void){
-	gdt_install();
-	idt_install();
-
 	/* Initialize terminal interface */
 	terminal_initialize();
-	unsigned char numero = 5/0;
+	gdt_install();
+	idt_install();
+	isrs_install();
+
+	//unsigned char numero = 5/0;
+	//__asm__  ("div %0" :: "r"(0));
  
 	/* Newline support is left as an exercise. */
 	//terminal_writestring("Hello, kernel Mundo!\nhola");
