@@ -6,6 +6,7 @@
 #include <idt.h>
 #include <isrs.h>
 #include <irq.h>
+#include <keyboard.h>
 
 #if defined(__linux__)
 #error "No estas usando un cross-compiler"
@@ -22,16 +23,18 @@ void kernel_main(void){
 	idt_install();
 	isrs_install();
 	irq_install();
-	//keyboard_install();
+	keyboard_install();
 
 	__asm__ __volatile__ ("sti");
 
 	//unsigned char numero = 5/0;
-	__asm__  ("div %0" :: "r"(0));
+	//__asm__  ("div %0" :: "r"(0));
  
 	/* Newline support is left as an exercise. */
 	//terminal_writestring("Hello, kernel Mundo!\nhola");
 	terminal_writestring("Hola, kernel Mundo!\n");
 	
 	//terminal_writestring("fervberbebrberberberberberbrbebreberberberberbebeberbrbebebebebrbrbrbrbrbrbrbrbra");
+
+	for (;;);
 }

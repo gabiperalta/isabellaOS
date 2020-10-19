@@ -17,12 +17,13 @@ i686-elf-gcc -c libc/idt/idt.c -o idt.o -std=gnu99 -ffreestanding -O2 -Wall -Wex
 i686-elf-gcc -c libc/isrs/isrs.c -o isrs.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I./include
 i686-elf-gcc -c libc/irq/irq.c -o irq.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I./include
 i686-elf-gcc -c libc/string/string.c -o string.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I./include
+i686-elf-gcc -c libc/keyboard/keyboard.c -o keyboard.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I./include
 
 # Linker
 i686-elf-gcc -T linker.ld -o isabellaos.bin -ffreestanding -O2 -nostdlib \
     boot.o \
     kernel.o \
-    vga.o system.o gdt.o idt.o isrs.o irq.o string.o \
+    vga.o system.o gdt.o idt.o isrs.o irq.o string.o keyboard.o \
     -lgcc
 
 # Grub
