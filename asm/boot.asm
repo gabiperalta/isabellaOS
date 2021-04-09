@@ -1,9 +1,9 @@
 ; Declare constants for the multiboot header.
 MBALIGN         equ  1 << 0            ; align loaded modules on page boundaries
 MEMINFO         equ  1 << 1            ; provide memory map
-;VIDINFO         equ  1 << 2
+VIDINFO         equ  1 << 2
 FLAGS           equ  MBALIGN | MEMINFO ; this is the Multiboot 'flag' field
-;FLAGS           equ 0x7
+;FLAGS           equ MBALIGN | MEMINFO | VIDINFO
 MAGIC           equ  0x1BADB002        ; 'magic number' lets bootloader find the header
 CHECKSUM        equ -(MAGIC + FLAGS)   ; checksum of above, to prove we are multiboot
 ;HEADER_ADDR     equ 0
@@ -11,10 +11,10 @@ CHECKSUM        equ -(MAGIC + FLAGS)   ; checksum of above, to prove we are mult
 ;LOAD_END_ADDR   equ 0
 ;BSS_END_ADDR    equ 0
 ;ENTRY_ADDR      equ 0
-;MODE_TYPE       equ 0x1
-;WIDTH           equ 0x64
-;HEIGHT          equ 0x64
-;DEPTH           equ 8
+;MODE_TYPE       equ 0x0
+;WIDTH           equ 1024
+;HEIGHT          equ 768
+;DEPTH           equ 32
 
 ; Declare a multiboot header that marks the program as a kernel. These are magic
 ; values that are documented in the multiboot standard. The bootloader will
@@ -26,15 +26,15 @@ align 4
 	dd MAGIC
 	dd FLAGS
 	dd CHECKSUM
-    ;dd HEADER_ADDR
-    ;dd LOAD_ADDR  
-    ;dd LOAD_END_ADDR
-    ;dd BSS_END_ADDR 
-    ;dd ENTRY_ADDR   
-    ;dd MODE_TYPE    
-    ;dd WIDTH        
-    ;dd HEIGHT       
-    ;dd DEPTH
+;    dd HEADER_ADDR
+;    dd LOAD_ADDR  
+;    dd LOAD_END_ADDR
+;    dd BSS_END_ADDR 
+;    dd ENTRY_ADDR   
+;    dd MODE_TYPE    
+;    dd WIDTH        
+;    dd HEIGHT       
+;    dd DEPTH
  
 ; The multiboot standard does not define the value of the stack pointer register
 ; (esp) and it is up to the kernel to provide a stack. This allocates room for a
