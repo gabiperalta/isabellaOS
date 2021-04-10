@@ -7,6 +7,7 @@
 #include <isrs.h>
 #include <irq.h>
 #include <keyboard.h>
+#include <multiboot.h>
 
 #if defined(__linux__)
 #error "No estas usando un cross-compiler"
@@ -16,7 +17,7 @@
 #error "Esto necesita ser compilado con un compilador ix86-elf"
 #endif
 
-void kernel_main(void){
+void kernel_main(multiboot_info_t* mbd,unsigned int magic){
 	/* Initialize terminal interface */
 	terminal_initialize();
 	gdt_install();
@@ -32,6 +33,10 @@ void kernel_main(void){
  
 	/* Newline support is left as an exercise. */
 	//terminal_writestring("Hello, kernel Mundo!\nhola");
+
+	if(magic == MULTIBOOT_BOOTLOADER_MAGIC)
+		terminal_writestring("es magic!\n");
+
 	terminal_writestring("Hola, kernel Mundo!\n");
 	
 	//terminal_writestring("fervberbebrberberberberberbrbebreberberberberbebeberbrbebebebebrbrbrbrbrbrbrbrbra");
